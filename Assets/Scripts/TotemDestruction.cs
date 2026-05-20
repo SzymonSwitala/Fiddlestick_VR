@@ -6,6 +6,7 @@ public class TotemDestruction : MonoBehaviour
     public GameObject fracturedVersion;
     public GameObject woodSplinters;
     public TotemBend bend;
+    public AudioSource hitSound;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -14,6 +15,7 @@ public class TotemDestruction : MonoBehaviour
         {
             Debug.Log("Totem takes damage from axe hit!");
             TakeDamage(1, collision.contacts[0].point);
+            hitSound.Play();
 
             if (bend != null)
                 bend.ApplyHit(collision.contacts[0].point, collision.relativeVelocity.normalized);
