@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   health: 20
   fracturedVersion: {fileID: 0}
-  woodSplinters: {fileID: 916209621072111727, guid: 4bb85f86ee18ca44eb7be7631c723b2f, type: 3}
+  woodSplinters: {fileID: 5745774288305011884, guid: cd2d89ab2a807b94c96e620cb6bc66c4, type: 3}
 --- !u!54 &7651830189938591170
 Rigidbody:
   m_ObjectHideFlags: 0

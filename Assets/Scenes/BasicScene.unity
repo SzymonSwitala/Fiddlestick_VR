@@ -25342,6 +25342,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave.003
       objectReference: {fileID: 0}
+    - target: {fileID: 803584999105619047, guid: cb762ab544eb5394088fd3223ee7023f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4285554872121652053, guid: cb762ab544eb5394088fd3223ee7023f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.715
