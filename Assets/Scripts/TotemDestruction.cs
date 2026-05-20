@@ -5,6 +5,7 @@ public class TotemDestruction : MonoBehaviour
     public int health = 50;
     public GameObject fracturedVersion;
     public GameObject woodSplinters;
+    public TotemBend bend;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -13,6 +14,9 @@ public class TotemDestruction : MonoBehaviour
         {
             Debug.Log("Totem takes damage from axe hit!");
             TakeDamage(1, collision.contacts[0].point);
+
+            if (bend != null)
+                bend.ApplyHit(collision.contacts[0].point, collision.relativeVelocity.normalized);
         }
     }
 
