@@ -26337,15 +26337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   spawnPoints:
   - {fileID: 705906617}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 630278877}
+  - {fileID: 397101279}
+  - {fileID: 1235152202}
   enemyInstance: {fileID: 740795928}
   minRespawnTime: 2
   maxRespawnTime: 5
