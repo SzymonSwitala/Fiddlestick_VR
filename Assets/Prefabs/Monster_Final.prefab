@@ -162,7 +162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2748c86caa2cdfc4f8e7119c46dad351, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 946685525179025628, guid: 2748c86caa2cdfc4f8e7119c46dad351, type: 3}
       propertyPath: m_Layer
@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   maxExposure: 2
   spawner: {fileID: 0}
+  timeToDefeatEnemy: 5
 --- !u!54 &293476687618302288
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -311,7 +312,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
