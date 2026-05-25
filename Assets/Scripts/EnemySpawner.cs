@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
         enemyInstance.transform.position = nextPoint.position;
         enemyInstance.transform.rotation = nextPoint.rotation;
 
-        enemyController.ResetEnemy();
+        enemyController.Respawn();
 
     }
     private SpawnPoint GetRandomSpawnPoint()
