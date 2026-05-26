@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameoverUI != null)
         {
+            Debug.Log("Game Over! Gracz przegrał.");
             gameoverUI.SetActive(true);
         }
     }

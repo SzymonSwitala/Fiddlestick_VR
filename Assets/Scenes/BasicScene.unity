@@ -11604,6 +11604,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5950734137828451404, guid: b89265c108def2946a837cbbb74335df, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 441087507}
+    - target: {fileID: 5950734137828451404, guid: b89265c108def2946a837cbbb74335df, type: 3}
       propertyPath: spawner
       value: 
       objectReference: {fileID: 1645711439}
@@ -11611,6 +11615,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 774206649}
+    - target: {fileID: 5950734137828451404, guid: b89265c108def2946a837cbbb74335df, type: 3}
+      propertyPath: attackDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5950734137828451404, guid: b89265c108def2946a837cbbb74335df, type: 3}
       propertyPath: timeToDefeatEnemy
       value: 10
