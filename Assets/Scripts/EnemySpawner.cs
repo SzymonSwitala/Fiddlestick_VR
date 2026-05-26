@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float maxRespawnTime = 5f;
 
 
+
     private void Start()
     {
         enemyController=enemyInstance.GetComponent<EnemyController>();
@@ -34,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         enemyInstance.transform.position = nextPoint.position;
         enemyInstance.transform.rotation = nextPoint.rotation;
 
-        enemyController.Respawn();
+        enemyController.Respawn(spawnPoint.poseIndex);
 
     }
     private SpawnPoint GetRandomSpawnPoint()

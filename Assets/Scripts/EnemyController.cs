@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.XR.OpenXR.Input;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private float maxExposure = 2.0f;
     [SerializeField] private EnemySpawner spawner;
 
     [Header("Game Over Settings")]
     [SerializeField] private float timeToDefeatEnemy = 5.0f;
+
 
     private float currentExposure = 0f;
     private float defeatTimer = 0;
@@ -40,9 +43,10 @@ public class EnemyController : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    public void Respawn()
+    public void Respawn(int poseIndex)
     {
         gameObject.SetActive(true);
+        animator.SetInteger("PoseIndex",poseIndex);
     }
     private void GameOver()
     {

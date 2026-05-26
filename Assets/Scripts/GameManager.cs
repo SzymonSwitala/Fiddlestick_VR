@@ -3,7 +3,14 @@
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    public static GameManager Instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
 
     [SerializeField] private GameObject gameoverUI;
 
@@ -21,12 +28,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameoverUI.SetActive(true);
+        if (gameoverUI != null)
+        {
+            gameoverUI.SetActive(true);
+        }
     }
 
     public void EnemyDefeated()
     {
-        Debug.Log("Enemy defeated! Gracz zniknął wroga.");
+        Debug.Log("Enemy defeated! Gracz pokonał wroga."); 
     }
-
 }
