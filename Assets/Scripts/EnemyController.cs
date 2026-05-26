@@ -46,6 +46,6 @@ public class EnemyController : MonoBehaviour
     }
     private void GameOver()
     {
-        Debug.Log("Game Over! Gracz nie zdążył zniknąć wroga.");
+     GameManager.Instance.GameOver();
     }
 }
