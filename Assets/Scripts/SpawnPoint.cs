@@ -11,8 +11,9 @@ public class SpawnPoint : MonoBehaviour
     }
     public void Activate()
     {
-       
-          spawnSoundSource.Play();
+        Debug.Log($"SpawnPoint {poseIndex} activated.");
+
+        spawnSoundSource.Play();
        
     }
 }
