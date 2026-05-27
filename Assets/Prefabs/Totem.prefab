@@ -205,12 +205,16 @@ PrefabInstance:
       value: pillar_small.001
       objectReference: {fileID: 0}
     - target: {fileID: 9080794076439206227, guid: 6368715054a00f44b960572cefe74aa6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6318
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080794076439206227, guid: 6368715054a00f44b960572cefe74aa6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.035938025
       objectReference: {fileID: 0}
     - target: {fileID: 9080794076439206227, guid: 6368715054a00f44b960572cefe74aa6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.038912173
+      value: -0.172
       objectReference: {fileID: 0}
     - target: {fileID: 9080794076439206227, guid: 6368715054a00f44b960572cefe74aa6, type: 3}
       propertyPath: m_LocalPosition.z
