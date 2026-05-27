@@ -26818,6 +26818,11 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!82 &1579029072 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6713611928924615038, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
+  m_PrefabInstance: {fileID: 8878683325974340244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1579184868
 Mesh:
   m_ObjectHideFlags: 0
@@ -36139,12 +36144,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5662886987667990046, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 1579029072}
+    - target: {fileID: 5662886987667990046, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
       propertyPath: fracturedVersion
       value: 
       objectReference: {fileID: 1399901881}
     - target: {fileID: 6713611928924615038, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651830189938591170, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8112473706981981366, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
       propertyPath: m_Name
