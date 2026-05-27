@@ -14,6 +14,7 @@ public class TotemDestruction : MonoBehaviour
 
         health -= amount;
         Instantiate(woodSplinters, hitPoint, Quaternion.identity);
+        Debug.Log($"Totem took {amount} damage at {hitPoint}. Remaining health: {health}");
 
         if (health <= 0)
         {

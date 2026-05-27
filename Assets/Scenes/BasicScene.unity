@@ -36156,6 +36156,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651830189938591170, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651830189938591170, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}

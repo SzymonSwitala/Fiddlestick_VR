@@ -32,6 +32,7 @@ public class AxeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Axe collided with {other.gameObject.name}");
         if (!isSwinging)
             return;
 
@@ -46,7 +47,7 @@ public class AxeController : MonoBehaviour
         lastHitTime = Time.time;
 
         Vector3 hitPoint = other.ClosestPoint(transform.position);
-
+        Debug.Log($"Axe hit totem at {hitPoint}");
         totem.TakeDamage(damage, hitPoint);
     }
 }
