@@ -11621,7 +11621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950734137828451404, guid: b89265c108def2946a837cbbb74335df, type: 3}
       propertyPath: timeToDefeatEnemy
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6935444601377908398, guid: b89265c108def2946a837cbbb74335df, type: 3}
       propertyPath: m_Controller
@@ -27397,8 +27397,8 @@ MonoBehaviour:
   - {fileID: 397101280}
   - {fileID: 1235152203}
   enemyInstance: {fileID: 774206648}
-  minRespawnTime: 2
-  maxRespawnTime: 5
+  minRespawnTime: 10
+  maxRespawnTime: 20
 --- !u!43 &1657627141
 Mesh:
   m_ObjectHideFlags: 0
