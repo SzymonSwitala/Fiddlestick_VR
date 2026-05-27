@@ -152,9 +152,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 940180583787579310}
+  - component: {fileID: 4290681436801006619}
   - component: {fileID: 2414553023389094337}
   - component: {fileID: 9086404687992422710}
-  - component: {fileID: 4290681436801006619}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Axe
@@ -178,6 +178,22 @@ Transform:
   - {fileID: 2861059966604562286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4290681436801006619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130419999778101375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e562b483790f31240b661e7178aee032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  rb: {fileID: 2414553023389094337}
+  damage: 1
+  minSwingVelocity: 1.5
+  hitCooldown: 0.15
 --- !u!54 &2414553023389094337
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -334,18 +350,6 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
---- !u!114 &4290681436801006619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8130419999778101375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e562b483790f31240b661e7178aee032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &8979227228761505295
 GameObject:
   m_ObjectHideFlags: 0
