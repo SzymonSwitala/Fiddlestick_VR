@@ -16720,6 +16720,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6784700702796189896, guid: a408e1e87209b3045ba8ffbfdfe099e8, type: 3}
+      propertyPath: range
+      value: 16.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784700702796189896, guid: a408e1e87209b3045ba8ffbfdfe099e8, type: 3}
+      propertyPath: isTurnOff
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784700702796189896, guid: a408e1e87209b3045ba8ffbfdfe099e8, type: 3}
+      propertyPath: sphereRadius
+      value: 2.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16751,6 +16763,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReturnToStartOnRelease
   returnSpeed: 12
+  onGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1030618872}
+        m_TargetAssemblyTypeName: FlashlightController, Assembly-CSharp
+        m_MethodName: TurnOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1030618872}
+        m_TargetAssemblyTypeName: FlashlightController, Assembly-CSharp
+        m_MethodName: TurnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onReturned:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1030618872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6784700702796189896, guid: a408e1e87209b3045ba8ffbfdfe099e8, type: 3}
+  m_PrefabInstance: {fileID: 1030618868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030618870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795d800393add634cb01337156bd616c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!43 &1034114716
 Mesh:
   m_ObjectHideFlags: 0
@@ -35687,6 +35743,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   returnSpeed: 12
+  onGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onReturned:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2024535608785574598
 PrefabInstance:
   m_ObjectHideFlags: 0

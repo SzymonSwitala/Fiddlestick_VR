@@ -14,10 +14,28 @@ public class FlashlightController : MonoBehaviour
     [SerializeField] private float sphereRadius = 1.5f;
     [SerializeField] private LayerMask enemyLayer;
 
+
+    public bool isTurnOff = false;
+
     private bool isBroken = false;
 
     private Vector3 lastPosition;
-
+    public void TurnOn()
+    {
+        isTurnOff = false;
+        if (flashlightBeam != null)
+        {
+            flashlightBeam.enabled = true;
+        }
+    }
+    public void TurnOff()
+    {
+        isTurnOff = true;
+        if (flashlightBeam != null)
+        {
+            flashlightBeam.enabled = false;
+        }
+    }
     private void Start()
     {
         lastPosition = transform.position;
@@ -25,6 +43,9 @@ public class FlashlightController : MonoBehaviour
 
     private void Update()
     {
+        if(isTurnOff)
+            return;
+
         if (isBroken)
         {
             CheckForShake();

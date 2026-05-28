@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.Events;
 
 public class ReturnToStartOnRelease : MonoBehaviour
 {
@@ -10,8 +11,14 @@ public class ReturnToStartOnRelease : MonoBehaviour
     private XRGrabInteractable grabInteractable;
     private Rigidbody rb;
 
+    [Header("Return Settings")]
     [SerializeField] private float returnSpeed = 5f;
     private bool isReturning = false;
+
+    [Header("Events")]
+    public UnityEvent onGrab;
+    public UnityEvent onRelease;
+    public UnityEvent onReturned;
 
     void Awake()
     {
@@ -21,27 +28,34 @@ public class ReturnToStartOnRelease : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
 
-        grabInteractable.selectExited.AddListener(OnRelease);
         grabInteractable.selectEntered.AddListener(OnGrab);
+        grabInteractable.selectExited.AddListener(OnRelease);
     }
 
     void OnDestroy()
     {
-        grabInteractable.selectExited.RemoveListener(OnRelease);
         grabInteractable.selectEntered.RemoveListener(OnGrab);
+        grabInteractable.selectExited.RemoveListener(OnRelease);
     }
 
     private void OnGrab(SelectEnterEventArgs args)
     {
         isReturning = false;
+
+        rb.useGravity = true;
+
+        onGrab?.Invoke();
     }
 
     private void OnRelease(SelectExitEventArgs args)
     {
         isReturning = true;
+
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.useGravity = false;
+
+        onRelease?.Invoke();
     }
 
     void Update()
@@ -58,6 +72,8 @@ public class ReturnToStartOnRelease : MonoBehaviour
 
             rb.useGravity = true;
             isReturning = false;
+
+            onReturned?.Invoke();
         }
     }
 }
