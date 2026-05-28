@@ -96,9 +96,9 @@ public class EnemyController : MonoBehaviour
         Invoke(nameof(GameOver), attackDelay);
     }
 
-    public void AddExposure()
+    public void AddExposure(float amount)
     {
-        currentExposure += Time.deltaTime;
+        currentExposure += amount;
 
         if (currentExposure >= maxExposure)
         {

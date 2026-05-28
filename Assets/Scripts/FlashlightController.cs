@@ -2,78 +2,123 @@
 
 public class FlashlightController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Light flashlightBeam;
-    [SerializeField] private float shakeThreshold = 2.0f;
+
+    [Header("Break Settings")]
+    [SerializeField] private float breakChancePerSecond = 0.03f;
+    [SerializeField] private float shakeThreshold = 2.5f;
+
     [Header("Detection Settings")]
     [SerializeField] private float range = 15f;
-    [SerializeField] private float sphereRadius = 2f;
+    [SerializeField] private float sphereRadius = 1.5f;
     [SerializeField] private LayerMask enemyLayer;
 
-    [SerializeField] bool isBroken = false;
+    private bool isBroken = false;
+
     private Vector3 lastPosition;
 
-    void Update()
+    private void Start()
+    {
+        lastPosition = transform.position;
+    }
+
+    private void Update()
     {
         if (isBroken)
         {
             CheckForShake();
+            return;
         }
-        else
-        {
-            SimulateRandomFailure();
-            CheckForEnemy();
-        }
+
+        SimulateRandomFailure();
+        CheckForEnemy();
     }
 
-    void SimulateRandomFailure()
+    private void SimulateRandomFailure()
     {
-        if (Random.value < 0.001f)
+        if (Random.value < breakChancePerSecond * Time.deltaTime)
         {
             BreakFlashlight();
         }
     }
 
-    void BreakFlashlight()
+    private void BreakFlashlight()
     {
         isBroken = true;
-        flashlightBeam.enabled = false;
+
+        if (flashlightBeam != null)
+        {
+            flashlightBeam.enabled = false;
+        }
+
+        Debug.Log("Flashlight broken");
     }
 
-    void CheckForShake()
+    private void FixFlashlight()
     {
-        Vector3 deviceVelocity = (transform.localPosition - lastPosition) / Time.deltaTime;
-        lastPosition = transform.localPosition;
+        if (!isBroken)
+            return;
 
-        if (deviceVelocity.magnitude > shakeThreshold)
+        isBroken = false;
+
+        if (flashlightBeam != null)
+        {
+            flashlightBeam.enabled = true;
+        }
+
+        Debug.Log("Flashlight fixed");
+    }
+
+    private void CheckForShake()
+    {
+        Vector3 currentPosition = transform.position;
+
+        Vector3 velocity =
+            (currentPosition - lastPosition) / Time.deltaTime;
+
+        lastPosition = currentPosition;
+
+        if (velocity.magnitude >= shakeThreshold)
         {
             FixFlashlight();
         }
     }
 
-    void FixFlashlight()
+    private void CheckForEnemy()
     {
-        isBroken = false;
-        flashlightBeam.enabled = true;
-    }
-    void CheckForEnemy()
-    {
-        RaycastHit hit;
+        Vector3 origin = transform.position + transform.forward * 0.2f;
 
-        if (Physics.SphereCast(transform.position, sphereRadius, transform.forward, out hit, range, enemyLayer))
+        if (Physics.SphereCast(
+                origin,
+                sphereRadius,
+                transform.forward,
+                out RaycastHit hit,
+                range,
+                enemyLayer))
         {
-            EnemyController enemy = hit.collider.GetComponentInParent<EnemyController>();
+            EnemyController enemy =
+                hit.collider.GetComponentInParent<EnemyController>();
+
             if (enemy != null)
             {
-                Debug.Log("Enemy detected in beam!");
-                enemy.AddExposure();
+                enemy.AddExposure(Time.deltaTime);
+
+                Debug.Log("Enemy detected");
             }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
+        Vector3 origin = transform.position + transform.forward * 0.2f;
+        Vector3 end = origin + transform.forward * range;
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, transform.forward * range);
-        Gizmos.DrawWireSphere(transform.position + transform.forward * range, sphereRadius);
+
+        Gizmos.DrawLine(origin, end);
+
+        Gizmos.DrawWireSphere(origin, sphereRadius);
+        Gizmos.DrawWireSphere(end, sphereRadius);
     }
 }
