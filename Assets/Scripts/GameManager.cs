@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private GameObject gameoverUI;
+    [SerializeField] private GameObject victoryUI;
 
     void Awake()
     {
@@ -38,5 +39,9 @@ public class GameManager : MonoBehaviour
     public void EnemyDefeated()
     {
         Debug.Log("Enemy defeated! Gracz pokonał wroga."); 
+        if (victoryUI != null)
+        {
+            victoryUI.SetActive(true);
+        }
     }
 }

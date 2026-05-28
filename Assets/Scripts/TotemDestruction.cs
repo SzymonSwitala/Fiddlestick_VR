@@ -25,6 +25,7 @@ public class TotemDestruction : MonoBehaviour
     void DestroyTotem()
     {
         fracturedVersion.gameObject.SetActive(true);
+        GameManager.Instance.EnemyDefeated();
         Destroy(gameObject);
     }
 }
