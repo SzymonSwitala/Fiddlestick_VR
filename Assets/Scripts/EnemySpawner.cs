@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<Transform> spawnPoints;
+    [SerializeField] private List<SpawnPoint> spawnPoints;
     [SerializeField] private GameObject enemyInstance;
     private EnemyController enemyController;
 
     [SerializeField] private float minRespawnTime = 2f;
     [SerializeField] private float maxRespawnTime = 5f;
+
 
 
     private void Start()
@@ -26,15 +27,18 @@ public class EnemySpawner : MonoBehaviour
         float waitTime = Random.Range(minRespawnTime, maxRespawnTime);
         yield return new WaitForSeconds(waitTime);
 
-        Transform nextPoint = GetRandomSpawnPoint();
+        SpawnPoint spawnPoint=GetRandomSpawnPoint();
+        spawnPoint.Activate();
+
+        Transform nextPoint = spawnPoint.transform; 
 
         enemyInstance.transform.position = nextPoint.position;
         enemyInstance.transform.rotation = nextPoint.rotation;
 
-        enemyController.ResetEnemy();
+        enemyController.Respawn(spawnPoint.poseIndex);
 
     }
-    private Transform GetRandomSpawnPoint()
+    private SpawnPoint GetRandomSpawnPoint()
     {
         return spawnPoints[Random.Range(0, spawnPoints.Count)];
     }

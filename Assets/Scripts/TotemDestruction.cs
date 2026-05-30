@@ -5,23 +5,16 @@ public class TotemDestruction : MonoBehaviour
     public int health = 50;
     public GameObject fracturedVersion;
     public GameObject woodSplinters;
+    public TotemBend bend;
+    public AudioSource hitSound;
 
-    void OnCollisionEnter(Collision collision)
+    public void TakeDamage(int amount, Vector3 hitPoint)
     {
-        Debug.Log("Totem hit by: " + collision.gameObject.name + " with velocity: " + collision.relativeVelocity.magnitude);
-        if (collision.gameObject.CompareTag("Axe") && collision.relativeVelocity.magnitude > 2.0f)
-        {
-            Debug.Log("Totem takes damage from axe hit!");
-            TakeDamage(1, collision.contacts[0].point);
-        }
-    }
+        hitSound.Play();
 
-    void TakeDamage(int amount, Vector3 hitPoint)
-    {
         health -= amount;
         Instantiate(woodSplinters, hitPoint, Quaternion.identity);
-
-//Trigger Haptic Feedback
+        Debug.Log($"Totem took {amount} damage at {hitPoint}. Remaining health: {health}");
 
         if (health <= 0)
         {
@@ -31,7 +24,8 @@ public class TotemDestruction : MonoBehaviour
 
     void DestroyTotem()
     {
-      fracturedVersion.gameObject.SetActive(true);
+        fracturedVersion.gameObject.SetActive(true);
+        GameManager.Instance.EnemyDefeated();
         Destroy(gameObject);
     }
 }
