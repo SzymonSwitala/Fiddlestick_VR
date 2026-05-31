@@ -7,14 +7,16 @@ public class TotemDestruction : MonoBehaviour
     private int currentHealth;
 
     [Header("Destruction Stages")]
-    [Tooltip("Dodaj tutaj modele totemu. 0 = nienaruszony, kolejne = coraz bardziej zniszczone.")]
     public GameObject[] damageStages;
     private int currentStageIndex = 0;
 
     [Header("References")]
     public GameObject woodSplinters;
     public TotemBend bend;
-    public AudioSource hitSound;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip[] hitSounds;
 
     void Start()
     {
@@ -24,7 +26,11 @@ public class TotemDestruction : MonoBehaviour
 
     public void TakeDamage(int amount, Vector3 hitPoint)
     {
-        if (hitSound != null) hitSound.Play();
+        if (audioSource != null && hitSounds != null && hitSounds.Length > 0)
+        {
+            int randomIndex = Random.Range(0, hitSounds.Length);
+            audioSource.PlayOneShot(hitSounds[randomIndex]);
+        }
 
         currentHealth -= amount;
 
@@ -51,7 +57,6 @@ public class TotemDestruction : MonoBehaviour
 
         float healthPercent = (float)currentHealth / maxHealth;
 
- 
         int expectedStage = Mathf.FloorToInt((1f - healthPercent) * damageStages.Length);
 
         expectedStage = Mathf.Clamp(expectedStage, 0, damageStages.Length - 1);
@@ -79,12 +84,11 @@ public class TotemDestruction : MonoBehaviour
 
     private void DestroyTotem()
     {
-
         if (GameManager.Instance != null)
         {
             GameManager.Instance.EnemyDefeated();
         }
 
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
