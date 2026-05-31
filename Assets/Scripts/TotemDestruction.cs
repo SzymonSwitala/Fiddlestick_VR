@@ -1,31 +1,98 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TotemDestruction : MonoBehaviour
 {
-    public int health = 50;
+    [Header("Health Settings")]
+    public int maxHealth = 100;
+    private int currentHealth;
+
+    [Header("Destruction Stages")]
+    [Tooltip("Dodaj tutaj modele totemu. 0 = nienaruszony, kolejne = coraz bardziej zniszczone.")]
+    public GameObject[] damageStages;
+    private int currentStageIndex = 0;
+
+    [Header("References")]
     public GameObject fracturedVersion;
     public GameObject woodSplinters;
     public TotemBend bend;
     public AudioSource hitSound;
 
+    void Start()
+    {
+        currentHealth = maxHealth;
+        UpdateDamageStage();
+    }
+
     public void TakeDamage(int amount, Vector3 hitPoint)
     {
-        hitSound.Play();
+        if (hitSound != null) hitSound.Play();
 
-        health -= amount;
-        Instantiate(woodSplinters, hitPoint, Quaternion.identity);
-        Debug.Log($"Totem took {amount} damage at {hitPoint}. Remaining health: {health}");
+        currentHealth -= amount;
 
-        if (health <= 0)
+        if (woodSplinters != null)
+        {
+            Instantiate(woodSplinters, hitPoint, Quaternion.identity);
+        }
+
+        Debug.Log($"Totem took {amount} damage at {hitPoint}. Remaining health: {currentHealth}");
+
+        if (currentHealth <= 0)
         {
             DestroyTotem();
         }
+        else
+        {
+            CheckDamageStage();
+        }
     }
 
-    void DestroyTotem()
+    private void CheckDamageStage()
     {
-        fracturedVersion.gameObject.SetActive(true);
-        GameManager.Instance.EnemyDefeated();
+        if (damageStages == null || damageStages.Length == 0) return;
+
+        float healthPercent = (float)currentHealth / maxHealth;
+
+ 
+        int expectedStage = Mathf.FloorToInt((1f - healthPercent) * damageStages.Length);
+
+        expectedStage = Mathf.Clamp(expectedStage, 0, damageStages.Length - 1);
+
+        if (expectedStage != currentStageIndex)
+        {
+            currentStageIndex = expectedStage;
+            UpdateDamageStage();
+
+            // Opcjonalnie: Możesz tu dodać np. efekt cząsteczkowy "odpadającego kawałka" 
+            // przy przejściu do kolejnego etapu.
+        }
+    }
+
+    private void UpdateDamageStage()
+    {
+        for (int i = 0; i < damageStages.Length; i++)
+        {
+            if (damageStages[i] != null)
+            {
+                damageStages[i].SetActive(i == currentStageIndex);
+            }
+        }
+    }
+
+    private void DestroyTotem()
+    {
+        if (fracturedVersion != null)
+        {
+
+            fracturedVersion.transform.position = transform.position;
+            fracturedVersion.transform.rotation = transform.rotation;
+            fracturedVersion.SetActive(true);
+        }
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.EnemyDefeated();
+        }
+
         Destroy(gameObject);
     }
 }
