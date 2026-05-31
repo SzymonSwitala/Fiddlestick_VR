@@ -59,7 +59,13 @@ MonoBehaviour:
   - {fileID: 8225766272404435970}
   woodSplinters: {fileID: 5745774288305011884, guid: cd2d89ab2a807b94c96e620cb6bc66c4, type: 3}
   bend: {fileID: 5188699736997982247}
-  hitSound: {fileID: 6713611928924615038}
+  audioSource: {fileID: 6713611928924615038}
+  hitSounds:
+  - {fileID: 8300000, guid: 5583a33d297986545afccbfa947fe452, type: 3}
+  - {fileID: 8300000, guid: dfbfa4f1ebdbb644180feeb137cd1b28, type: 3}
+  - {fileID: 8300000, guid: 30a99ecb641e41d4ea6953780ce4c184, type: 3}
+  - {fileID: 8300000, guid: 9f47bb31202637147924dc208a726bfe, type: 3}
+  - {fileID: 8300000, guid: f3744e999e1e8114e9c86a684e77f09f, type: 3}
 --- !u!54 &7651830189938591170
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -82,11 +88,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5188699736997982247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +120,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

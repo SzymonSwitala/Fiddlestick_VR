@@ -34,6 +34,8 @@ public class TotemDestruction : MonoBehaviour
 
         currentHealth -= amount;
 
+        if (currentHealth < 0) currentHealth = 0;
+
         if (woodSplinters != null)
         {
             Instantiate(woodSplinters, hitPoint, Quaternion.identity);
@@ -41,13 +43,11 @@ public class TotemDestruction : MonoBehaviour
 
         Debug.Log($"Totem took {amount} damage at {hitPoint}. Remaining health: {currentHealth}");
 
+        CheckDamageStage();
+
         if (currentHealth <= 0)
         {
             DestroyTotem();
-        }
-        else
-        {
-            CheckDamageStage();
         }
     }
 
@@ -55,11 +55,25 @@ public class TotemDestruction : MonoBehaviour
     {
         if (damageStages == null || damageStages.Length == 0) return;
 
-        float healthPercent = (float)currentHealth / maxHealth;
+        int expectedStage = 0;
 
-        int expectedStage = Mathf.FloorToInt((1f - healthPercent) * damageStages.Length);
+        if (currentHealth <= 0)
+        {
+            expectedStage = damageStages.Length - 1;
+        }
+        else
+        {
+            int activeStagesCount = damageStages.Length - 1;
 
-        expectedStage = Mathf.Clamp(expectedStage, 0, damageStages.Length - 1);
+            if (activeStagesCount > 0)
+            {
+                float healthPercent = (float)currentHealth / maxHealth;
+
+                expectedStage = Mathf.FloorToInt((1f - healthPercent) * activeStagesCount);
+
+                expectedStage = Mathf.Clamp(expectedStage, 0, activeStagesCount - 1);
+            }
+        }
 
         if (expectedStage != currentStageIndex)
         {
@@ -88,7 +102,5 @@ public class TotemDestruction : MonoBehaviour
         {
             GameManager.Instance.EnemyDefeated();
         }
-
-        // Destroy(gameObject);
     }
 }
