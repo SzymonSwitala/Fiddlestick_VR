@@ -97,10 +97,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e562b483790f31240b661e7178aee032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  rb: {fileID: 2414553023389094337}
   damage: 1
-  minSwingVelocity: 1.5
-  hitCooldown: 0.15
+  hitCooldown: 0.2
+  minHitVelocity: 9.95
+  hitEffectPrefab: {fileID: 0}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  isLeftHand: 0
+  hapticAmplitude: 0.5
+  hapticDuration: 0.15
 --- !u!1 &8130419999778101375
 GameObject:
   m_ObjectHideFlags: 0
