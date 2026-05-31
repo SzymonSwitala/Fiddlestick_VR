@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events; // Wymagane do używania UnityEvent
 
 public class GameManager : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private GameObject gameoverUI;
-    [SerializeField] private GameObject victoryUI;
+    [Header("Game Events")]
+    public UnityEvent onGameOver;
+    public UnityEvent onVictory;
 
     void Awake()
     {
@@ -29,19 +31,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (gameoverUI != null)
-        {
-            Debug.Log("Game Over! Gracz przegrał.");
-            gameoverUI.SetActive(true);
-        }
+        Debug.Log("Game Over! Gracz przegrał.");
+        onGameOver?.Invoke();
     }
 
     public void EnemyDefeated()
     {
-        Debug.Log("Enemy defeated! Gracz pokonał wroga."); 
-        if (victoryUI != null)
-        {
-            victoryUI.SetActive(true);
-        }
+        Debug.Log("Enemy defeated! Gracz pokonał wroga.");
+        onVictory?.Invoke();
     }
 }

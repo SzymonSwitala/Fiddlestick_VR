@@ -23669,8 +23669,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba279382ce1dd842b2db1562908924f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  gameoverUI: {fileID: 2067732074}
-  victoryUI: {fileID: 282952586}
+  onGameOver:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2067732074}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onVictory:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 282952586}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!4 &1170080452
 Transform:
   m_ObjectHideFlags: 0
@@ -26559,11 +26587,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!82 &1579029072 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6713611928924615038, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
-  m_PrefabInstance: {fileID: 8878683325974340244}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1579184868
 Mesh:
   m_ObjectHideFlags: 0
@@ -35769,25 +35792,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5662886987667990046, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
-      propertyPath: hitSound
+      propertyPath: destroySound
       value: 
-      objectReference: {fileID: 1579029072}
-    - target: {fileID: 5662886987667990046, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
-      propertyPath: fracturedVersion
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6713611928924615038, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7651830189938591170, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7651830189938591170, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 5ad589b80667b5849b54297bf6c92c7a, type: 3}
     - target: {fileID: 8112473706981981366, guid: 866bfe4ebfe26f14f83815bb80096d5e, type: 3}
       propertyPath: m_Name
       value: Totem

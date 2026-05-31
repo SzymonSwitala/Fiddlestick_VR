@@ -17,6 +17,7 @@ public class TotemDestruction : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] hitSounds;
+    public AudioClip destroySound;
 
     void Start()
     {
@@ -101,6 +102,11 @@ public class TotemDestruction : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.EnemyDefeated();
+        }
+    
+        if (audioSource != null && destroySound != null)
+        {
+            audioSource.PlayOneShot(destroySound);
         }
     }
 }
