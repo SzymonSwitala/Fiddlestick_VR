@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.Events; // Wymagane do używania UnityEvent
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.XR; // Wymagane do obsługi przycisków VR
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +20,9 @@ public class GameManager : MonoBehaviour
     public UnityEvent onGameOver;
     public UnityEvent onVictory;
 
+    // Zmienna zapamiętująca stan przycisku, żeby resetować mapę tylko w momencie wciśnięcia (a nie przytrzymania)
+    private bool wasPrimaryButtonPressed = false;
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -26,6 +32,35 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+        }
+    }
+
+    void Update()
+    {
+   
+
+        CheckVRInput();
+    }
+
+    private void CheckVRInput()
+    {
+        InputDeviceCharacteristics characteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+        List<InputDevice> rightHandDevices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(characteristics, rightHandDevices);
+
+        if (rightHandDevices.Count > 0)
+        {
+            InputDevice rightController = rightHandDevices[0];
+
+            if (rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool isPressed))
+            {
+                if (isPressed && !wasPrimaryButtonPressed)
+                {
+                    ResetMap();
+                }
+
+                wasPrimaryButtonPressed = isPressed;
+            }
         }
     }
 
@@ -39,5 +74,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Enemy defeated! Gracz pokonał wroga.");
         onVictory?.Invoke();
+    }
+
+    public void ResetMap()
+    {
+        Debug.Log("Przeładowywanie mapy...");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }
