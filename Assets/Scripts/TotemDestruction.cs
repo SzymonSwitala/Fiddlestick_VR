@@ -12,7 +12,6 @@ public class TotemDestruction : MonoBehaviour
     private int currentStageIndex = 0;
 
     [Header("References")]
-    public GameObject fracturedVersion;
     public GameObject woodSplinters;
     public TotemBend bend;
     public AudioSource hitSound;
@@ -80,13 +79,6 @@ public class TotemDestruction : MonoBehaviour
 
     private void DestroyTotem()
     {
-        if (fracturedVersion != null)
-        {
-
-            fracturedVersion.transform.position = transform.position;
-            fracturedVersion.transform.rotation = transform.rotation;
-            fracturedVersion.SetActive(true);
-        }
 
         if (GameManager.Instance != null)
         {
